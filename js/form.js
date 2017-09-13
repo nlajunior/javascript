@@ -9,16 +9,50 @@ botaoAdicionar.addEventListener("click", function(event){
     var paciente = obtemPacienteFormulario(form);
 
     var pacienteTr = montaTr(paciente);
+    
+    var erros = validaPaciente(paciente);
+   //var erros[];
+
+    if (erros.length>0){
+        exibeMensagemDeErro(erros);
+        //var mensagemErro = document.querySelector("#mensagem-erro");
+        //mensagemErro.textContent=erro;
+
+        return;
+    }
 
     var tabela = document.querySelector("#tabela-pacientes");
 
     tabela.appendChild(pacienteTr);
 
+    
+    var mensagemErros = document.querySelector("#mensagens-erro");
+    
+    mensagemErros.innerHTML="";
+    
     form.reset();
+
+
 
 
 });
 
+//=======Funções auxiliares============
+
+function exibeMensagemDeErro(erros){
+
+  var ul =  document.querySelector("#mensagens-erro");
+  ul.innerHTML ="";
+  
+  erros.forEach(function(erro){
+    
+    var li = document.createElement("li");
+    li.textContent = erro;
+    ul.appendChild(li);
+
+  });
+
+}
 
 function obtemPacienteFormulario(form){
 
@@ -59,4 +93,25 @@ function obtemPacienteFormulario(form){
     pacienteTr.appendChild(montaTd(paciente.imc, "info-imc"));
     // retorna a TR
     return pacienteTr;  
+}
+
+
+
+  function validaPaciente(paciente) {
+
+    var erros = [];
+
+    if (paciente.nome.length==0){
+        erros.push("O campo nome deve ser preenchido");
+    }
+
+    if (!validaPeso(paciente.peso)) {
+        erros.push("Peso é inválido");
+    }
+
+    if (!validaAltura(paciente.altura)) {
+        erros.push("Altura é inválida");
+    }
+
+    return erros;
 }
