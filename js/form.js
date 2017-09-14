@@ -31,13 +31,28 @@ botaoAdicionar.addEventListener("click", function(event){
     mensagemErros.innerHTML="";
     
     form.reset();
-
-
-
-
 });
 
 //=======Funções auxiliares============
+
+  function validaPaciente(paciente) {
+
+    var erros = [];
+
+    if (paciente.nome.length==0){
+        erros.push("O campo nome deve ser preenchido");
+    }
+
+    if (!validaPeso(paciente.peso)) {
+        erros.push("Peso é inválido");
+    }
+
+    if (!validaAltura(paciente.altura)) {
+        erros.push("Altura é inválida");
+    }
+
+    return erros;
+}
 
 function exibeMensagemDeErro(erros){
 
@@ -97,21 +112,4 @@ function obtemPacienteFormulario(form){
 
 
 
-  function validaPaciente(paciente) {
 
-    var erros = [];
-
-    if (paciente.nome.length==0){
-        erros.push("O campo nome deve ser preenchido");
-    }
-
-    if (!validaPeso(paciente.peso)) {
-        erros.push("Peso é inválido");
-    }
-
-    if (!validaAltura(paciente.altura)) {
-        erros.push("Altura é inválida");
-    }
-
-    return erros;
-}
