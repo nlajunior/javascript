@@ -26,7 +26,7 @@ botaoAdicionar.addEventListener("click", function(event){
     tabela.appendChild(pacienteTr);
 
     
-    var mensagemErros = document.querySelector("#mensagens-erro");
+    var mensagemErros = document.querySelector("#mensagem-erro");
     
     mensagemErros.innerHTML="";
     
@@ -56,7 +56,7 @@ botaoAdicionar.addEventListener("click", function(event){
 
 function exibeMensagemDeErro(erros){
 
-  var ul =  document.querySelector("#mensagens-erro");
+  var ul =  document.querySelector("#mensagem-erro");
   ul.innerHTML ="";
   
   erros.forEach(function(erro){
